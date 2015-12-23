@@ -32,3 +32,108 @@ body {
   color: #ECF0F1;
   background: #34495E;
 }
+
+.hide {
+  display: none;
+}
+
+.header {
+  margin: .5em 0 1em 0;
+  font-size: 3em;
+  font-family: 'Roboto';
+  color: #E74C3C;
+}
+
+.header p {
+  margin: 0;
+  text-align: center;
+}
+
+.control {
+  margin-bottom: 1em;
+  font-size: 3em;
+}
+
+.control p {
+  margin: 0;
+  text-align: center;
+}
+
+.control a {
+  display: inline-block;
+  padding: .1em .2em;
+  border: 1px solid #E74C3C;
+  color: #E74C3C;
+  transition: .2s background-color ease;
+  margin: 0;
+}
+
+.control a.active {
+  color: #ECF0F1;
+  background-color: #E74C3C;
+}
+
+.winner p {
+  font-size: 3em;
+  text-align: center;
+}
+
+.table {
+  font-size: 6em;
+}
+
+.table .cell {
+  height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.table .top-left {
+  border-right: 2px solid #E74C3C;
+  border-bottom: 2px solid #E74C3C;
+}
+
+.table .top-mid {
+  border-left: 2px solid #E74C3C;
+  border-right: 2px solid #E74C3C;
+  border-bottom: 2px solid #E74C3C;
+}
+
+.table .top-right {
+  border-left: 2px solid #E74C3C;
+  border-bottom: 2px solid #E74C3C;
+}
+
+.table .mid-left {
+  border-right: 2px solid #E74C3C;
+  border-bottom: 2px solid #E74C3C;
+  border-top: 2px solid #E74C3C;
+}
+
+.table .mid-mid {
+  border: 2px solid #E74C3C;
+}
+
+.table .mid-right {
+  border-left: 2px solid #E74C3C;
+  border-bottom: 2px solid #E74C3C;
+  border-top: 2px solid #E74C3C;
+}
+
+.table .bot-left {
+  border-right: 2px solid #E74C3C;
+  border-top: 2px solid #E74C3C;
+}
+
+.table .bot-mid {
+  border-right: 2px solid #E74C3C;
+  border-top: 2px solid #E74C3C;
+  border-left: 2px solid #E74C3C;
+}
+
+.table .bot-right {
+  border-left: 2px solid #E74C3C;
+  border-top: 2px solid #E74C3C;
+}
