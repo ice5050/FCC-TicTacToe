@@ -1,3 +1,32 @@
+if(Array.prototype.equals)
+    console.warn("Overriding existing Array.prototype.equals. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code.");
+// attach the .equals method to Array's prototype to call it on any array
+Array.prototype.equals = function (array) {
+    // if the other array is a falsy value, return
+    if (!array)
+        return false;
+
+    // compare lengths - can save a lot of time
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0, l=this.length; i < l; i++) {
+        // Check if we have nested arrays
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!this[i].equals(array[i]))
+                return false;
+        }
+        else if (this[i] != array[i]) {
+            // Warning - two different object instances will never be equal: {x:20} != {x:20}
+            return false;
+        }
+    }
+    return true;
+}
+// Hide method from for-in loops
+Object.defineProperty(Array.prototype, "equals", {enumerable: false});
+
 var game = {
   player: 'O',
   ai: 'X',
@@ -149,9 +178,12 @@ function aiPlay() {
 }
 
 function findNext() {
-  var next;
+  var next
+      fork = findFork();
   if (!game.table[4]) {
     next = 4;
+  }else if (fork !== null) {
+    next = fork;
   }else if (!game.table[1]) {
     next = 1;
   }else if (!game.table[3]) {
@@ -162,6 +194,24 @@ function findNext() {
     next = 7;
   }
   return next;
+}
+
+function findFork() {
+  var table = game.table,
+      player = game.player,
+      possibles = [
+        [table[1], table[3], table[0], table[2], table[6]],
+        [table[1], table[5], table[0], table[2], table[8]],
+        [table[5], table[7], table[2], table[6], table[8]],
+        [table[3], table[7], table[0], table[6], table[8]]
+      ],
+      next = [0, 2, 8, 6];
+  for (var i = 0; i < possibles.length; i += 1) {
+    if (possibles[i].equals([player, player, null, null , null])) {
+      return next[i];
+    }
+  }
+  return null;
 }
 
 function findBlank() {
